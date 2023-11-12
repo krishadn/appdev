@@ -44,7 +44,7 @@ function destroy(id){
                                 <th class="px-4 py-3">Arrival Time</th>
                                 <th class="px-4 py-3">Origin</th>
                                 <th class="px-4 py-3">Destination</th>
-
+                                <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Bus Type</th>
                                 <th class="px-4 py-3">Action</th>
 
@@ -64,7 +64,9 @@ function destroy(id){
                                     <td >
                                     {{ schedule.destination }}
                                     </td>
-
+                                    <td >
+                                    {{ schedule.status }}
+                                    </td>
                                     <td >
                                     {{ schedule.type }}
                                     </td>

@@ -15,7 +15,8 @@ class BusSchedule extends Model
         'departure_time',
         'route_id',
         'bus_id',
-        'price'
+        'price',
+        'status'
 
     ];
 
