@@ -11,6 +11,7 @@ defineProps({
 function destroy(id){
     if (confirm('Are you sure you want to delete this Schedule ?',id)) {
        router.delete(route("schedule.destroy",id));
+       alert("Schedule deleted");
     }
 }
 

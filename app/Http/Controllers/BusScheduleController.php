@@ -20,7 +20,7 @@ class BusScheduleController extends Controller
      */
     public function index()
     {
-       $query="SELECT  bus_schedules.id AS id,type, code, origin,destination,
+       $query="SELECT  bus_schedules.id AS id,type, bus_schedules.status, code, origin,destination,
                DATE_FORMAT(departure_time,'%M %d %Y - %r') AS departure_time,
                DATE_FORMAT(arrival_time,' %M %d %Y - %r') AS arrival_time
                FROM  bus_schedules
@@ -50,8 +50,9 @@ class BusScheduleController extends Controller
     {
         $routes= Busroute::all();
         $buses=Bus::all();
+        $cur_date = now();
         return Inertia::render('Schedules/Create',
-                        ['buses'=>$buses,'routes'=> $routes]);
+                        ['buses'=>$buses,'routes'=> $routes, 'min_date' => $cur_date]);
     }
 
     /**
@@ -65,6 +66,7 @@ class BusScheduleController extends Controller
             "route_id"=> Request::get("route_id"),
             "bus_id"=> Request::get("bus_id"),
             "price"=> Request::get("price"),
+            "status"=> Request::get("status"),
 
         ]);
         return to_route('schedules')->with('success', 'New  created.');
@@ -107,7 +109,9 @@ class BusScheduleController extends Controller
             "arrival_time"=> 'required',
             "departure_time"=> 'required',
             "route_id"=> 'required',
-            "bus_id"=> 'required'
+            "bus_id"=> 'required',
+            "status"=>'required',
+            "price"=>'required',
         ]);
 
         BusSchedule::where('id',$busSchedule->id)
@@ -115,7 +119,9 @@ class BusScheduleController extends Controller
             "arrival_time"=> Request::get("arrival_time"),
             "departure_time"=> Request::get("departure_time"),
             "route_id"=> Request::get("route_id"),
-            "bus_id"=> Request::get("bus_id")
+            "bus_id"=> Request::get("bus_id"),
+            "price"=> Request::get("price"),
+            "status"=>Request::get("status")
         ]);
         return to_route('schedules')->with('success', 'Schedule  Updated.');
 

@@ -11,6 +11,7 @@ defineProps({
 function destroy(id){
     if (confirm('Are you sure you want to delete this Bus Information?')) {
         router.delete(route("bus.destroy",id));
+        alert("Bus successfully deleted");
     }
 }
 

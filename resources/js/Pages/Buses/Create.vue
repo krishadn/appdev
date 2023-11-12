@@ -26,8 +26,8 @@ import TextInput from '@/Components/TextInput.vue'
         return;
     }
 
-    alert("Bus successfully created");
     router.post(route("bus.store"),form);  
+    alert("Bus successfully created");
   }
 
 

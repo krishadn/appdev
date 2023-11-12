@@ -6,9 +6,10 @@ import { reactive,ref } from 'vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import TextInput from '@/Components/TextInput.vue'
 
-defineProps({
+const props = defineProps({
     routes: Object,
-    buses: Object
+    buses: Object,
+    min_date: Date,
 })
 
   const form=reactive({
@@ -16,12 +17,30 @@ defineProps({
       arrival_time: "",
       price:"",
       bus_id: "",
-      route_id:""
+      route_id:"",
+      status:"",
   })
 
   function submit() {
+    if (form.departure_time < props.min_date){
+        alert("Invalid departure time date");
+        return;
+    }
 
-     router.post(route("schedule.store"),form);
+    if (form.departure_time >= form.arrival_time){
+        alert("Invalid arrival time date");
+        return;
+    }
+
+    if (!form.departure_time || !form.arrival_time || !form.price 
+        || !form.bus_id || !form.route_id || !form.status){
+        alert("All fields are required")
+        return;
+    }
+
+    router.post(route("schedule.store"),form);
+    alert("Schedule created");
+
   }
 
 
@@ -55,7 +74,7 @@ defineProps({
                                     <InputLabel for="price"  value="Price"/>
                                 </div>
                                 <div class="block w-full">
-                                    <TextInput  id="price"  type="number" v-model="form.price" required />
+                                    <TextInput  id="price"  type="number" v-model="form.price" min = 1 required />
                                 </div>
 
 
@@ -67,6 +86,14 @@ defineProps({
                                  <InputLabel for="bus" class="block font-medium text-gray-700">Select Bus </InputLabel>
                                 <select id="route" v-model="form.bus_id" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option v-for="bus in buses"  :value="bus.id">{{ bus.code }} - {{ bus.type }}</option>
+                                 </select>
+
+                                 <InputLabel for="type" class="block font-medium text-gray-700">Select Status:</InputLabel>
+                                <select id="type" v-model="form.status" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
+                                    <option value="In Transit">In Transit</option>
+                                    <option value="Arrived">Arrived</option>
+                                    <option value="Delay">Delay</option>
+                                    <option value="Waiting">Waiting</option>
                                  </select>
 
                                 <div class=" py-3 md:w-1/3">

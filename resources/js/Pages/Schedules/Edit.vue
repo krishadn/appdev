@@ -16,18 +16,41 @@ const props = defineProps({
   const form= reactive({
             arrival_time: props.busSchedule.arrival_time,
             departure_time: props.busSchedule.departure_time,
+            price: props.busSchedule.price,
             bus_id: props.busSchedule.bus_id,
-            route_id:props.busSchedule.route_id
+            route_id:props.busSchedule.route_id,
+            status: props.busSchedule.status
     })
 
+    const min_date = new Date();
+
     function update() {
+        if (form.departure_time < min_date){
+        alert("Invalid departure time date");
+        return;
+        }
+
+        if (form.departure_time >= form.arrival_time){
+            alert("Invalid arrival time date");
+            return;
+        }
+
+        if (!form.departure_time || !form.arrival_time || !form.price 
+            || !form.bus_id || !form.route_id || !form.status){
+            alert("All fields are required")
+            return;
+        }
+
         router.post(`/schedule/${props.busSchedule.id}`, {
             _method: 'put',
             arrival_time: form.arrival_time,
             departure_time: form.departure_time,
+            price: form.price,
             bus_id:  form.bus_id,
-            route_id: form.route_id
+            route_id: form.route_id,
+            status: form.status
         })
+        alert("Schedule updated");
   }
 
 </script>
@@ -58,6 +81,12 @@ const props = defineProps({
                                 <div class="block w-full">
                                     <TextInput  id="arrival_time"  type="datetime-local" v-model="form.arrival_time" required />
                                 </div>
+                                <div>
+                                    <InputLabel for="price"  value="Price"/>
+                                </div>
+                                <div class="block w-full">
+                                    <TextInput  id="price"  type="number" v-model="form.price" min = 1 required />
+                                </div>
 
                                 <InputLabel for="route" class="block font-medium text-gray-700">Select Bus Route:</InputLabel>
                                 <select id="route" v-model="form.route_id" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
@@ -67,6 +96,14 @@ const props = defineProps({
                                  <InputLabel for="bus" class="block font-medium text-gray-700">Select Bus </InputLabel>
                                 <select id="route" v-model="form.bus_id" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option v-for="bus in buses"  :value="bus.id">{{ bus.code }} - {{ bus.type }}</option>
+                                 </select>
+
+                                 <InputLabel for="type" class="block font-medium text-gray-700">Select Status:</InputLabel>
+                                <select id="type" v-model="form.status" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
+                                    <option value="In Transit">In Transit</option>
+                                    <option value="Arrived">Arrived</option>
+                                    <option value="Delay">Delay</option>
+                                    <option value="Waiting">Waiting</option>
                                  </select>
 
                                 <div class=" py-3 md:w-1/3">
