@@ -11,7 +11,8 @@ class Bus extends Model
     protected $fillable = [
         'code',
         'type',
-        'capacity'
+        'capacity',
+        'status'
 
     ];
     protected $table="buses";

@@ -20,10 +20,12 @@ class BusFactory extends Factory
     {
         $options = (["Luxury", "De Luxe", "Super De Luxe", "Express",
         "Standard Bus"]);
+        $stat_opt = (["Good Condition", "For Repair"]);
         return [
             'code' => fake()->unique()->regexify('[A-Z]{3}[0-9]{3}'),
             'capacity' => fake()->numberBetween(30, 45),
             'type'=>fake()->randomElement($options),
+            'status'=>fake()->randomElement($stat_opt),
 
         ];
     }

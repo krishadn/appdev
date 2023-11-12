@@ -24,6 +24,9 @@ function destroy(id){
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="p-3 flex justify-center">
+                        <h1>BUS MANAGEMENT</h1>
+                </div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                   <div class="p-3 ">
                     <Link :href="route('bus.create')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2 rounded mx-2" as="button">
@@ -43,6 +46,7 @@ function destroy(id){
                                 <th class="px-4 py-3">code</th>
                                 <th class="px-4 py-3">type</th>
                                 <th class="px-4 py-3">capacity</th>
+                                <th class="px-4 py-3">status</th>
                                 <th class="px-4 py-3" colspan="2">Actions</th>
 
 
@@ -59,6 +63,9 @@ function destroy(id){
                                     </td>
                                     <td >
                                     {{ bus.capacity }}
+                                    </td>
+                                    <td >
+                                    {{ bus.status }}
                                     </td>
                                     <td class="flex ">
                                     <Link :href="route('bus.edit')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2 m-2 rounded" :data= "{id: bus.id}" as="button" >

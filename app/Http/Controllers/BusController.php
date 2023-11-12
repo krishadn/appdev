@@ -35,9 +35,10 @@ class BusController extends Controller
     public function store()
     {
         Request::validate([
-            'code' =>'required',
+            'code' =>'required|regex:/^[A-Z]{3}[0-9]{3}$/',
             'type' =>'required',
             'capacity' =>'required',
+            'status' => 'required',
         ]);
 
 
@@ -45,6 +46,7 @@ class BusController extends Controller
             'code' =>Request::get('code'),
             'type' =>Request::get('type'),
             'capacity' =>Request::get('capacity'),
+            'status' =>Request::get('status'),
 
         ]);
         return to_route('buses')->with('success', 'New Bus  created.');

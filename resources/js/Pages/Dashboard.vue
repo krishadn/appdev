@@ -16,17 +16,20 @@ defineProps({
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-3 ">
+                <div class="p-3 flex justify-center">
+                        <h1>DASHBOARD</h1>
+                </div>
+                <div class="p-3 ">
                         <h1>BUS STATUS</h1>
-                    </div>    
-                    <div class="p-3">
-                        <h1>Available Buses: {{unsched_buses}}</h1>
-                        <h1>Buses Scheduled: {{sched_buses}}</h1>
-                    </div>
-                  
+                </div>    
+                <div class="p-3">
+                    <h1>Available Buses: {{unsched_buses}}</h1>
+                    <h1>Buses Scheduled: {{sched_buses}}</h1>
+                </div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                   <div class="p-3 ">
                     <h1>SCHEDULE TODAY</h1>
                   </div>
