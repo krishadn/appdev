@@ -22,6 +22,16 @@ const props = defineProps({
     })
 
     function update() {
+        if(form.origin === form.destination){
+        alert("Origin and Destination cannot be the same");
+        return;
+        }   
+
+        if(!form.origin || !form.destination){
+            alert("All fields are required");
+            return;
+        }
+
         router.post(`/busroute/${props.busroute.id}`, {
             _method: 'put',
             origin: form.origin,
@@ -55,11 +65,13 @@ const props = defineProps({
                                 </div>
                                 <div class="mb-4">
                                     <InputLabel for="origin" class="block font-medium text-gray-700">
-                                        Select Origin:
+                                        Select Destination:
                                     </InputLabel>
                                     <select id="route" v-model="form.destination" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
-                                        <option v-for="location in locations"  :value="location.location">
-                                            {{ location.location }} </option>
+                                        <template v-for="location in locations">
+                                            <option v-if="location.location != form.origin" :value="location.location">
+                                            {{ location.location }}</option>
+                                        </template>
                                    </select>
                                 </div>
                                 <PrimaryButton>Submit</PrimaryButton>

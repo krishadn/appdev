@@ -26,10 +26,18 @@ class BusrouteFactory extends Factory
                 "Benguet", "Tarlac", "Pangasinan", "Occidental Mindoro",
                 "Laoag", "Vigan", "Pagudpud", "Bangued"]);
                 
-    $randomOption = fake()->randomElement($options);
+    $randomOption1 = fake()->randomElement($options);
+
+    $randomOption2 = fake()->randomElement($options);
+
+    while($randomOption1 === $randomOption2){
+        $randomOption2 = fake()->randomElement($options);
+    }
+    
+
         return [
-            'origin' => $randomOption,
-            'destination' => $randomOption,
+            'origin' => $randomOption1,
+            'destination' => $randomOption2,
         ];
     }
 }

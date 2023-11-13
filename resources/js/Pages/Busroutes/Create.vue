@@ -13,8 +13,19 @@ import { reactive,ref } from 'vue'
   })
 
   function submit() {
-     
-      router.post(route("busroutes.store"),form);
+    if(form.origin === form.destination){
+        alert("Origin and Destination cannot be the same");
+        return;
+    }
+
+    if(!form.origin || !form.destination){
+        alert("All fields are required");
+        return;
+    }
+
+    router.post(route("busroutes.store"),form);
+    alert("Route created");
+
   }
   defineProps({
     locations: Object,
@@ -43,8 +54,11 @@ import { reactive,ref } from 'vue'
 
                                  <InputLabel for="destination" class="block font-medium text-gray-700">Select Destination </InputLabel>
                                 <select id="route" v-model="form.destination" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
-                                    <option v-for="location in locations"  :value="location.location">
+                                    <template v-for="location in locations">
+                                        <option v-if="location.location != form.origin" :value="location.location">
                                         {{ location.location }}</option>
+                                    </template>
+                                    
                                  </select>
                             </div>
                                 <PrimaryButton type="submit" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2 rounded mx-2">

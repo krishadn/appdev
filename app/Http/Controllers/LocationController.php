@@ -35,10 +35,23 @@ class LocationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store()
-    {
-        Location::create([
-            "location"=> Request::get("location"),
-        ]);
+    {   
+        $locations = Location::all();
+        $existing = false;
+
+        foreach ($locations as $location){
+            if(Request::get("location") === $location->location){
+                $existing = true;
+                break;
+            }
+        }
+
+        if(!$existing){
+            Location::create([
+                "location"=> Request::get("location"),
+            ]);
+        }
+        
         return to_route('locations')->with('success', 'New  created.');
     }
 
