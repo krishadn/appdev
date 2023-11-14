@@ -52,6 +52,9 @@ const props = defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden ma-8  bg-red-200 rounded-lg border shadow-xs">
+                    <div class="p-3 flex justify-center">
+                        <h1 class="text-2xl font-semibold">UPDATE ROUTE</h1>
+                    </div>
                     <div class="overflow-x-auto  m-8 ">
                             <form @submit.prevent="update" >
                                 <div class="mb-4">

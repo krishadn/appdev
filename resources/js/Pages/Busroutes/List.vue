@@ -24,6 +24,9 @@ function destroy(id){
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="p-3 flex justify-center">
+                        <h1 class="text-2xl font-semibold">ROUTES</h1>
+                </div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                   <div class="p-3 ">
                     <Link :href="route('busroutes.create')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2 rounded mx-2  transition duration-300 ease-in-out transform hover:scale-105"

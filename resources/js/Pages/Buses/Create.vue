@@ -44,7 +44,7 @@ import TextInput from '@/Components/TextInput.vue'
 
                 <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
                     <div class="p-3 flex justify-center">
-                        <h1>ADD NEW BUS</h1>
+                        <h1 class="text-2xl font-semibold">ADD NEW BUS</h1>
                     </div>
                     <div class="flex md:items-center m-6">
                             <form class="w-full max-w-sm"  @submit.prevent="submit">
