@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $query="SELECT  bus_schedules.id AS id,type, code, origin,destination,
+        $query="SELECT  bus_schedules.id AS id,type, code, bus_schedules.status , origin,destination,
                 DATE_FORMAT(departure_time,'%M %d %Y - %r') AS departure_time,
                 DATE_FORMAT(arrival_time,' %M %d %Y - %r') AS arrival_time
                 FROM  bus_schedules
