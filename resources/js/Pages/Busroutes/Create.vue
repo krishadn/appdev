@@ -12,7 +12,7 @@ import { reactive,ref } from 'vue'
       destination: "",
   })
 
-  function submit() {
+  async function submit() {
     if(form.origin === form.destination){
         alert("Origin and Destination cannot be the same");
         return;
@@ -23,8 +23,16 @@ import { reactive,ref } from 'vue'
         return;
     }
 
-    router.post(route("busroutes.store"),form);
-    alert("Route created");
+    //router.post(route("busroutes.store"),form);
+    const response = await router.post(route('busroutes.store'), form);
+
+
+    if (response?.session?.success){
+        alert("Route created");
+    }
+    else if(response?.session?.fail){
+        alert("Route Already Exist")
+    }
 
   }
   defineProps({
@@ -43,6 +51,9 @@ import { reactive,ref } from 'vue'
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
+                    <div class="p-3 flex justify-center">
+                        <h1 class="text-2xl font-semibold">ADD NEW ROUTE</h1>
+                    </div>
                     <div class="overflow-x-auto  m-5">
                         <form class="w-full max-w-sm"  @submit.prevent="submit">
                             <div class="mb-4">
