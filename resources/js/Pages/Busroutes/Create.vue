@@ -12,7 +12,7 @@ import { reactive,ref } from 'vue'
       destination: "",
   })
 
-  function submit() {
+  async function submit() {
     if(form.origin === form.destination){
         alert("Origin and Destination cannot be the same");
         return;
@@ -23,8 +23,16 @@ import { reactive,ref } from 'vue'
         return;
     }
 
-    router.post(route("busroutes.store"),form);
-    alert("Route created");
+    //router.post(route("busroutes.store"),form);
+    const response = await router.post(route('busroutes.store'), form);
+
+
+    if (response?.session?.success){
+        alert("Route created");
+    }
+    else if(response?.session?.fail){
+        alert("Route Already Exist")
+    }
 
   }
   defineProps({

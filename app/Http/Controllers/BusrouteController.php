@@ -36,17 +36,29 @@ class BusrouteController extends Controller
      */
     public function store()
     {
+        $existing = false;
+        $busroutes = Busroute::all();
         Request::validate([
             'origin' => 'required',
             'destination' => 'required',
         ]);
 
-
-        Busroute::create([
-            'origin' =>Request::get('origin'),
-            'destination' => Request::get('destination'),
-        ]);
-        return to_route('busroutes')->with('success', 'New Route  created.');
+        foreach($busroutes as $busroute){
+            if (Request::get("origin") === $busroute->origin || Request::get('destination') === $busroute->destination){
+                $existing = true;
+                break;
+            }
+        }
+        if($existing === false){
+            Busroute::create([
+                'origin' =>Request::get('origin'),
+                'destination' => Request::get('destination'),
+            ]);
+            return to_route('busroutes')->with('success', 'New Route  created.');
+        }
+        else{
+            return to_route('busroutes.create')->with('fail', 'No New Route  created.');
+        }
 
     }
 
@@ -63,6 +75,7 @@ class BusrouteController extends Controller
      */
     public function edit(Busroute $busroute)
     {
+        
         $id=Request::get("id");
         $busroute= Busroute::find($id);
         $locations= Location::all();
@@ -74,17 +87,30 @@ class BusrouteController extends Controller
      */
     public function update(Busroute $busroute)
     {
+        $existing = false;
+        $busroutes = Busroute::all();
         Request::validate([
             'origin' => 'required',
             'destination' => 'required',
         ]);
 
-        Busroute::where('id',$busroute->id)
-        ->update([
-            'origin' =>Request::get('origin'),
-            'destination' => Request::get('destination')
-        ]);
-        return to_route('busroutes')->with('success', 'Route  edited.');
+        foreach($busroutes as $busroute){
+            if (Request::get("origin") === $busroute->origin || Request::get('destination') === $busroute->destination){
+                $existing = true;
+                break;
+            }
+        }
+        if($existing === false){
+            Busroute::where('id',$busroute->id)
+            ->update([
+                'origin' =>Request::get('origin'),
+                'destination' => Request::get('destination')
+            ]);
+            return to_route('busroutes')->with('success', 'Route  edited.');
+        }
+        else{
+            return to_route('busroutes')->with('fail', 'Route  edit failed.');
+        }
     }
 
     /**
