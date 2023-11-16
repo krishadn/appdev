@@ -7,6 +7,10 @@ import { reactive,ref } from 'vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import TextInput from '@/Components/TextInput.vue'
 
+const props = defineProps({
+        buses: Object
+    })
+
   const form=reactive({
       code: "",
       capacity: "",
@@ -18,6 +22,19 @@ import TextInput from '@/Components/TextInput.vue'
   function submit() {
     if (!regex.test(form.code)){
         alert("Invalid code (format: ABC123)")
+        return;
+    }
+
+    let code_exist = false;
+
+    props.buses.forEach(bus => {
+        if (bus.code === form.code){
+            code_exist = true;
+        }
+    })
+
+    if(code_exist){
+        alert('Code entered already exist');
         return;
     }
 

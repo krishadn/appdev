@@ -8,7 +8,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import { reactive,ref } from 'vue'
 
 const props = defineProps({
-      location: Object
+      location: Object,
+      locations: Object
   })
 
 
@@ -20,11 +21,26 @@ const props = defineProps({
     })
 
     function update() {
+        let loc_exist = false;
+
+        props.locations.forEach(loc => {
+            if (loc.location.toLowerCase() === form.location.toLowerCase() && 
+            loc.location.toLowerCase() !== props.location.location.toLowerCase()){
+                loc_exist = true;
+            }
+        })
+
+        if(loc_exist){
+            alert('Location already exist');
+            return;
+        }
+
         router.post(`/location/${props.location.id}`, {
             _method: 'put',
             location: form.location,
 
         })
+        alert("Location updated");
   }
 
 </script>

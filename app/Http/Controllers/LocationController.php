@@ -28,7 +28,10 @@ class LocationController extends Controller
 
     public function create()
     {
-        return Inertia::render('Locations/Create');
+        $locations = Location::all();
+        return Inertia::render('Locations/Create', [
+            'locations'=>$locations,
+        ]);
     }
 
     /**
@@ -68,9 +71,9 @@ class LocationController extends Controller
      */
     public function edit()
     {
-
+        $locations = Location::all();
         $location= Location::find(Request::get("id"));
-        return Inertia::render('Locations/Edit',['location'=>$location]);
+        return Inertia::render('Locations/Edit',['location'=>$location, 'locations' => $locations]);
     }
 
     /**

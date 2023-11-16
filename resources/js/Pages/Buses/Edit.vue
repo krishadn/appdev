@@ -8,7 +8,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import { reactive,ref } from 'vue'
 
 const props = defineProps({
-      bus: Object
+      bus: Object,
+      buses: Object
   })
 //   function submit(busroute) {
 //       router.put(route("busroutes.update"),busroute);
@@ -29,6 +30,19 @@ const regex = /^[A-Z]{3}[0-9]{3}$/;
         if (!regex.test(form.code)){
         alert("Invalid code (format: ABC123)")
         return;
+        }
+
+        let code_exist = false;
+
+        props.buses.forEach(bus => {
+            if (bus.code === form.code && bus.code !== props.bus.code){
+                code_exist = true;
+            }
+        })
+
+        if(code_exist){
+            alert('Code entered already exist');
+            return;
         }
 
         if (!form.code || !form.capacity || !form.type || !form.status){

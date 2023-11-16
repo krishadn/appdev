@@ -26,7 +26,10 @@ class BusController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Buses/Create');
+        $buses = Bus::all();
+        return Inertia::render('Buses/Create',[
+            'buses' => $buses
+        ]);
     }
 
     /**
@@ -65,9 +68,10 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
+        $buses = Bus::all();
         $id=Request::get("id");
         $bus= Bus::find($id);
-        return Inertia::render('Buses/Edit',['bus'=>$bus]);
+        return Inertia::render('Buses/Edit',['bus'=>$bus, 'buses' => $buses]);
     }
 
     /**

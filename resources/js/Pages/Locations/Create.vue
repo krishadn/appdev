@@ -7,12 +7,32 @@ import { reactive,ref } from 'vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import TextInput from '@/Components/TextInput.vue'
 
+const props = defineProps({
+        locations: Object
+    })
+
+
+
   const form=reactive({
       location: "",
   })
 
   function submit() {
-      router.post(route("location.store"),form);
+    let loc_exist = false;
+
+    props.locations.forEach(loc => {
+        if (loc.location.toLowerCase() === form.location.toLowerCase()){
+            loc_exist = true;
+        }
+    })
+
+    if(loc_exist){
+        alert('Location already exist');
+        return;
+    }
+
+    router.post(route("location.store"),form);
+    alert("Location successfully updated");
   }
 
 
