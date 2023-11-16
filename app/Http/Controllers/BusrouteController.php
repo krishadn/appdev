@@ -18,7 +18,9 @@ class BusrouteController extends Controller
 
         $busroutes = Busroute::all();
         return Inertia::render('Busroutes/List',[
-            'busroutes' => $busroutes
+            
+            'busroutes' => $busroutes,
+            'successEdit' => session('successEdit'),'failEdit' => session('failEdit'),
         ]);
     }
 
@@ -28,7 +30,10 @@ class BusrouteController extends Controller
     public function create()
     {
         $locations=Location::all();
-        return Inertia::render('Busroutes/Create',['locations'=>$locations]);
+        return Inertia::render('Busroutes/Create',['locations'=>$locations, 
+        'success' => session('success'),'fail' => session('fail'),
+    ]);
+
     }
 
     /**
@@ -44,7 +49,7 @@ class BusrouteController extends Controller
         ]);
 
         foreach($busroutes as $busroute){
-            if (Request::get("origin") === $busroute->origin || Request::get('destination') === $busroute->destination){
+            if (Request::get("origin") === $busroute->origin && Request::get('destination') === $busroute->destination){
                 $existing = true;
                 break;
             }
@@ -54,7 +59,7 @@ class BusrouteController extends Controller
                 'origin' =>Request::get('origin'),
                 'destination' => Request::get('destination'),
             ]);
-            return to_route('busroutes')->with('success', 'New Route  created.');
+            return to_route('busroutes')->with('success', 'New Route created.');
         }
         else{
             return to_route('busroutes.create')->with('fail', 'No New Route  created.');
@@ -93,9 +98,10 @@ class BusrouteController extends Controller
             'origin' => 'required',
             'destination' => 'required',
         ]);
-
+        
         foreach($busroutes as $busroute){
-            if (Request::get("origin") === $busroute->origin || Request::get('destination') === $busroute->destination){
+            
+            if (Request::get("origin") === $busroute->origin && Request::get('destination') === $busroute->destination){
                 $existing = true;
                 break;
             }
@@ -106,10 +112,10 @@ class BusrouteController extends Controller
                 'origin' =>Request::get('origin'),
                 'destination' => Request::get('destination')
             ]);
-            return to_route('busroutes')->with('success', 'Route  edited.');
+            return to_route('busroutes')->with('successEdit', 'Route  edited.');
         }
         else{
-            return to_route('busroutes')->with('fail', 'Route  edit failed.');
+            return to_route('busroutes')->with('failEdit', 'Route  edit failed.');
         }
     }
 

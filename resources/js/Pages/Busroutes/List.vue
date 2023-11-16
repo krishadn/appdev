@@ -4,9 +4,18 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import NavLink from '@/Components/NavLink.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 
-defineProps({
-    busroutes: Object
+const props = defineProps({
+    busroutes: Object,
+    successEdit: String,
+    failEdit: String
 })
+if (props.successEdit){
+        alert("Route created");
+    }
+    else if (props.failEdit){
+        alert("Route already exist");
+    }
+
 
 function destroy(id){
     if (confirm('Are you sure you want to delete this Route?')) {

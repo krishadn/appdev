@@ -10,7 +10,7 @@ import TextInput from '@/Components/TextInput.vue';
 
 const props = defineProps({
       busroute: Object,
-      locations: Object
+      locations: Object,
   })
 
 
@@ -31,12 +31,14 @@ const props = defineProps({
             alert("All fields are required");
             return;
         }
+        
 
         router.post(`/busroute/${props.busroute.id}`, {
             _method: 'put',
             origin: form.origin,
             destination: form.destination,
         })
+        console.log(props.busroute.id);
   }
 
 </script>
