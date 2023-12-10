@@ -18,6 +18,11 @@ export default {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
         },
+        colors: {
+            'brand-green':'#89D036',
+            'brand-purple':'#8952B0',
+            'brand-cream':'#FEEDDF',
+        }
     },
 
     plugins: [forms,
