@@ -12,7 +12,20 @@ import { reactive,ref } from 'vue'
       destination: "",
   })
 
-  async function submit() {
+  const props = defineProps({
+    locations: Object,
+    success: String,
+    fail: String
+
+  })
+
+
+
+    console.log("success " + props.success);
+    console.log("fail "+ props.fail);  
+
+
+  function submit() {
     if(form.origin === form.destination){
         alert("Origin and Destination cannot be the same");
         return;
@@ -24,22 +37,21 @@ import { reactive,ref } from 'vue'
     }
 
     //router.post(route("busroutes.store"),form);
-    const response = await router.post(route('busroutes.store'), form);
+    router.post(route('busroutes.store'), form);
+    console.log("fail "+ props.fail);
+    console.log("success " + props.success);
 
+    if (props.success && props.fail){
+        console.log("hello")
+    }
+    else if (props.fail){
+        alert("Route already exist");
+    }
+  
 
-    if (response?.session?.success){
-        alert("Route created");
-    }
-    else if(response?.session?.fail){
-        alert("Route Already Exist")
-    }
 
   }
-  defineProps({
-    locations: Object,
-})
-
-
+  
 </script>
 
 <template>
