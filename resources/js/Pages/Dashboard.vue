@@ -2,11 +2,47 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Carousel from '@/Components/Carousel.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+import BarChart from '@/Components/BarChart.vue';
 
-defineProps({
+const props = defineProps({
+    bus_types: Object,
+    bus_status: Object,
     schedules: Object,
     sched_buses: Number,
     unsched_buses: Number,
+})
+
+const typeLabels = props.bus_types.map(obj => obj.type)
+const typeData = props.bus_types.map(obj => obj.bus_count)
+
+const typeDatasets = [{
+        label: 'Bus by Type',
+        data: typeData,
+        backgroundColor:['#8952B0','#89D036'],
+        borderWidth: 1
+}]
+
+const statusLabels = props.bus_status.map(obj => obj.status)
+const statusData = props.bus_status.map(obj => obj.bus_count)
+
+const statusDatasets = [{
+        label: 'Bus by Status',
+        data: statusData,
+        backgroundColor:['#8952B0','#89D036'],
+        borderWidth: 1
+}]
+
+const availLabels = ['Available', 'Scheduled']
+const availDatasets = [{
+    label: 'Bus by Availability',
+    data: [props.unsched_buses, props.sched_buses],
+    backgroundColor:['#8952B0','#89D036'],
+    borderWidth: 1
+}] 
+
+onMounted(() => {
+    
 })
 
 function destroy(id){
@@ -24,25 +60,12 @@ function destroy(id){
     <AuthenticatedLayout>
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- Dashboard Title -->
-            <div class="p-3 flex justify-center">
-                <h1 class="text-2xl font-semibold">DASHBOARD</h1>
-            </div>
+            <!-- Bus Graph Section -->
+            
+            <BarChart :labels="typeLabels" :datasets="typeDatasets"/>
+            <BarChart :labels="statusLabels" :datasets="statusDatasets"/>
+            <BarChart :labels="availLabels" :datasets="availDatasets"/>
 
-            <!-- Bus Status Section -->
-            <div class="pb-3">
-                <h1 class="text-xl font-semibold">BUS STATUS</h1>
-                <div class="flex">
-                    <div class="bg-white mr-3 overflow-hidden shadow-sm sm:rounded-lg p-3 flex items-center">
-                        <div class="text-xl font-semibold ">Available Buses:</div>
-                        <div class="text-lg text-black ml-2">{{ unsched_buses }}</div>
-                    </div>
-                    <div class="bg-white mr-3 overflow-hidden shadow-sm sm:rounded-lg p-3 flex items-center ">
-                        <div class="text-xl font-semibold ">Buses Scheduled:</div>
-                        <div class="text-lg text-black ml-2">{{ sched_buses }}</div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Schedule Today Section -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
