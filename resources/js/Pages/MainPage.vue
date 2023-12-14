@@ -15,85 +15,90 @@ defineProps({
 
 
 <template>
-<nav class="bg-gradient-to-b from-green-400 to-blue-400 fixed top-0 z-50 w-full bg-white border-b border-gray-200dark:bg-gray-800 dark:border-gray-700">
-  <div class="px-3 py-3 lg:px-5 lg:pl-3">
-        <div class="flex items-center justify-between">
-                <div class="flex items-center justify-start">
-                    <Link href="/" class="flex ml-2 md:mr-24">
-                    <img src="/storage/partas_logo.png" class="h-8 mr-3" alt="FlowBite Logo" />
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Partas Bus Inc</span>
-                    </Link>
-                    <span class="self-center text-xl text-green-800 font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Ticket Reservation System</span>
-                </div>
-                <div class="flex items-center">
-                        <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                                <Link
-                                    v-if="$page.props.auth.user"
-                                    :href="route('dashboard')"
-                                    class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    >Dashboard</Link
-                                >
+    <!-- <nav class="bg-custom-green fixed top-0 z-50 w-full border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"> -->
+    <nav class="bg-custom-green fixed top-0 z-50 w-full flex items-center justify-between px-6 py-3">
+        <div class="flex items-center">
+            <img src="bus_logo.png" alt="Logo" class="h-12 w-10 mr-3" />
+        <div>
+            <span class="text-2xl font-semibold text-black">Buzzline Transit, Inc.</span>
+        </div>
+        </div>
+        
+        <div>
+            <a href="#" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">Home</a>
+            <a href="#" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">About Us</a>
+            <a href="#" class="text-black font-bold hover:underline hover:text-yellow-100">Contacts</a>
+        </div>
+    </nav>
 
-                                <template v-else>
-                                    <div class="flex justify-between">
-                                    <Link
-                                        :href="route('login')"
-                                        class="flex font-semibold  text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400
-                                               dark:hover:text-white focus:outline focus:outline-2
-                                               focus:rounded-sm focus:outline-red-500"
-                                        >
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                                        </svg>
-                                        Log in
-                                    </Link>
+       
 
-                                    <Link
-                                        v-if="canRegister"
-                                        :href="route('register')"
-                                        class="flex ml-4 font-semibold text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                        </svg>
+    <!-- GRADIENT LANG ITO -->
 
-                                        Register</Link
-                                    >
-                                    </div>
-                                </template>
-                        </div>
-                </div>
-        </div>
-  </div>
-</nav>
+    <!-- <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"> -->
+    <!-- <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true"> -->
+    <!-- <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div> -->
+    <!-- </div> -->
+    <!-- <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true"> -->
+    <!-- <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div> -->
+  <!-- </div> -->
 
-<div class="p-6 dark:border-gray-700 mt-14 bg-blue-400">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://nr4kmtcwpy93.objectstorage.ap-tokyo-1.oci.customer-oci.com/n/nr4kmtcwpy93/b/bucket-20230809-1910/o/carousel1.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://nr4kmtcwpy93.objectstorage.ap-tokyo-1.oci.customer-oci.com/n/nr4kmtcwpy93/b/bucket-20230809-1910/o/carousel1.png" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://nr4kmtcwpy93.objectstorage.ap-tokyo-1.oci.customer-oci.com/n/nr4kmtcwpy93/b/bucket-20230809-1910/o/carousel2.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://nr4kmtcwpy93.objectstorage.ap-tokyo-1.oci.customer-oci.com/n/nr4kmtcwpy93/b/bucket-20230809-1910/o/carousel3.jpg" alt="">
-        </div>
-        <div>
-            <Carousel />
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://nr4kmtcwpy93.objectstorage.ap-tokyo-1.oci.customer-oci.com/n/nr4kmtcwpy93/b/bucket-20230809-1910/o/carousel1.png" alt="">
-        </div>
+  <!-- GRADIENT LANG ITO -->
 
+
+
+            <!-- TAGLINE -->
+    <!-- TAGLINE -->
+    <div class="relative isolate overflow-hidden bg-white-900 py-24 sm:py-32" style="margin-top: 60px;">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 flex">
+        <div class="mx-auto max-w-2xl lg:mx-0 order-2 lg:order-1">
+            <h2 class="text-4xl font-bold tracking-tight text-black sm:text-6xl">To Infinity and Beyond your Expectations!</h2>
+            <p class="mt-6 text-lg leading-8 text-black-300 sm:text-xl">Hop on board and let us take you where you need to go! 
+                <br>Because at Buzzline Transit, we go beyond your expectations.
+            </p>
+        </div>
+        <img src="bus_image.png" alt="Bus Image" class="w-full lg:flex order-1 lg:order-2"> 
+    </div>
+
+        
+         
+            <!-- FOR BUTTONS OF BOOKING AND SIGN UP -->
+        <div class="flex items-center mt-20 ml-105 lg:flex">
+            <div v-if="canLogin" class="p-6 text-left">
+                <Link
+                    v-if="$page.props.auth.user"
+                    :href="route('dashboard')"
+                    class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    Dashboard
+                </Link>
+
+    <template v-else>
+                <Link
+                    :href="route('login')"
+                    class="bg-custom-log text-white font-bold py-2 px-4 rounded mr-2">
+                    Log in
+                </Link>
+
+                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2">
+                    Register
+                </Link>
+        </template>
     </div>
 </div>
-
+</div>
 </template>
 
+
+
 <style>
+.bg-custom-green, .bg-custom-log {
+    background-color: #89D036;
+}
 
-
+.bg-custom-register {
+    background-color: #8952B0;
+}
 </style>
