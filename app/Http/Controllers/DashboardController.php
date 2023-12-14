@@ -29,12 +29,22 @@ class DashboardController extends Controller
                     RIGHT JOIN bus_schedules ON buses.id = bus_schedules.bus_id
                     GROUP BY buses.id";
 
+          
+
         $sched_buses= count(DB::select($query_one));
         $all_buses = count(Bus::all());
         $unsched_buses = $all_buses - $sched_buses; 
 
+        $bus_type_query = "SELECT type, COUNT(*) AS bus_count FROM buses GROUP BY type";
+        $bus_stat_query = "SELECT status, COUNT(*) AS bus_count FROM buses GROUP BY status"; 
+
+        $bus_types = DB::select($bus_type_query);
+        $bus_status = DB::select($bus_stat_query);
         $schedules= DB::select($query);
+
         return Inertia::render('Dashboard',[
+            'bus_types'=>$bus_types,
+            'bus_status'=>$bus_status,
             'schedules'=>$schedules,
             'sched_buses'=>$sched_buses,
             'unsched_buses'=>$unsched_buses,        
