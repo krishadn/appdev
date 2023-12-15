@@ -29,9 +29,9 @@ defineProps({
         </div>
         
         <div>
-            <a href="#" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">Home</a>
-            <a href="#" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">About Us</a>
-            <a href="#" class="text-black font-bold hover:underline hover:text-yellow-100">Contacts</a>
+            <Link href="/" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">Home</Link>
+            <Link href="/about" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">About Us</Link>
+            <Link href="/contact" class="text-black font-bold hover:underline hover:text-yellow-100">Contacts</Link>
         </div>
     </div>
 
