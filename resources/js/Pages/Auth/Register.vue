@@ -69,7 +69,7 @@ const hcaptchaExecute = async () => {
 
         <form @submit.prevent="hcaptchaExecute">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Name" class="mt-3" />
 
                 <TextInput
                     id="name"
@@ -81,7 +81,7 @@ const hcaptchaExecute = async () => {
                     autocomplete="name"
                 />
 
-                <InputError class="mt-1" :message="form.errors.name" />
+                <InputError class="mt-3" :message="form.errors.name" />
             </div>
 
             <div class="mt-3">
@@ -129,19 +129,19 @@ const hcaptchaExecute = async () => {
                 <InputError class="mt-1" :message="form.errors.password_confirmation" />
             </div>
 
-            <div class="flex items-center justify-start mt-3">
+
+            <div class="flex items-center justify-start mt-5">
                 <VueHcaptcha sitekey='7d0f0ea1-2454-49cd-9c2c-63fbdd941cf1'/> <!-- Replace with your hCaptcha site key -->
 
             </div>
 
-            <div class="flex items-center justify-end mt-3">
+            <div class="flex items-center justify-end mt-2">
                 <Link
                     :href="route('login')"
-                    class="underline text-sm text-gray-599 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                    class="underline text-sm text-gray-599 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-green">
                     Already registered?
                 </Link>
-                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ml-3 sm:text-s" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
             </div>
