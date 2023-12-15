@@ -1,6 +1,11 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import Carousel from '@/Components/Carousel.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+
+
+
 defineProps({
     canLogin: {
         type: Boolean,
@@ -15,10 +20,9 @@ defineProps({
 
 
 <template>
-    <!-- <nav class="bg-custom-green fixed top-0 z-50 w-full border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"> -->
-    <nav class="bg-custom-green fixed top-0 z-50 w-full flex items-center justify-between px-6 py-3">
+    <div class="bg-custom-green fixed top-0 z-50 w-full flex items-center justify-between px-6 py-3">
         <div class="flex items-center">
-            <img src="bus_logo.png" alt="Logo" class="h-12 w-10 mr-3" />
+            <img src="bus_logo.png" alt="Logo" class="h-12 w- mr-3" />
         <div>
             <span class="text-2xl font-semibold text-black">Buzzline Transit, Inc.</span>
         </div>
@@ -29,41 +33,27 @@ defineProps({
             <a href="#" class="text-black font-bold mr-4 hover:underline hover:text-yellow-100">About Us</a>
             <a href="#" class="text-black font-bold hover:underline hover:text-yellow-100">Contacts</a>
         </div>
-    </nav>
-
-       
-
-    <!-- GRADIENT LANG ITO -->
-
-    <!-- <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"> -->
-    <!-- <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true"> -->
-    <!-- <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div> -->
-    <!-- </div> -->
-    <!-- <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true"> -->
-    <!-- <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div> -->
-  <!-- </div> -->
-
-  <!-- GRADIENT LANG ITO -->
-
-
-
-            <!-- TAGLINE -->
-    <!-- TAGLINE -->
-    <div class="relative isolate overflow-hidden bg-white-900 py-24 sm:py-32" style="margin-top: 60px;">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 flex">
-        <div class="mx-auto max-w-2xl lg:mx-0 order-2 lg:order-1">
-            <h2 class="text-4xl font-bold tracking-tight text-black sm:text-6xl">To Infinity and Beyond your Expectations!</h2>
-            <p class="mt-6 text-lg leading-8 text-black-300 sm:text-xl">Hop on board and let us take you where you need to go! 
-                <br>Because at Buzzline Transit, we go beyond your expectations.
-            </p>
-        </div>
-        <img src="bus_image.png" alt="Bus Image" class="w-full lg:flex order-1 lg:order-2"> 
     </div>
 
-        
-         
-            <!-- FOR BUTTONS OF BOOKING AND SIGN UP -->
-        <div class="flex items-center mt-20 ml-105 lg:flex">
+    <!-- TAGLINE -->
+    <div>
+        <div class="flex">
+            <!-- Left div for the tagline -->
+            <div class="w-3/4 mt-60 ml-20">
+                <h2 class="text-4xl font-bold tracking-tight text-black sm:text-6xl">To Infinity and Beyond your Expectations!</h2>
+                <p class="mt-6 text-lg leading-8 text-black-300 sm:text-2xl">Hop on board and let us take you where you need to go! 
+                    <br>Because at Buzzline Transit, we go beyond your expectations.
+                </p>
+            </div>
+
+            <!-- Right div for the company picture -->
+            <div class="w-1/2 mt-40">
+                <img src="bus_pic.png" alt="Company Picture">
+            </div>
+        </div>
+
+        <!-- Login and Register buttons -->
+        <div class="flex justify-center mb-20">
             <div v-if="canLogin" class="p-6 text-left">
                 <Link
                     v-if="$page.props.auth.user"
@@ -72,33 +62,59 @@ defineProps({
                     Dashboard
                 </Link>
 
-    <template v-else>
-                <Link
-                    :href="route('login')"
-                    class="bg-custom-log text-white font-bold py-2 px-4 rounded mr-2">
-                    Log in
-                </Link>
+        <template v-else>
+            <!-- LOGIN  -->
+            <Link
+                :href="route('login')"
+                class="bg-custom-log bg-hover text-white font-bold py-2 px-4 rounded mr-2 sm:text-2xl hover:bg-brand-green">
+                Log in
+            </Link>
 
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2">
-                    Register
-                </Link>
+            <!-- REGISTER -->
+            <Link
+                v-if="canRegister"
+                :href="route('register')"
+                class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2 sm:text-2xl hover:bg-brand-purple">
+                Register
+            </Link>
+
         </template>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- FOOTER -->
+    <div className="w-full bg-slate-300 flex flex-col justify-center items-center h-20 shadow-md shadow-gray-900">
+    <p className="text-black sm:text-2xl font-semibold">
+        Follow us on our socials!
+    </p>
+    <!-- Social Media Icons -->
+    <div className="flex space-x-5">
+        <font-awesome-icon :icon="['fab', 'instagram']" size="2x" />
+        <font-awesome-icon :icon="['fab', 'facebook']" size="2x" />
+        <font-awesome-icon :icon="['fab', 'twitter']" size="2x" />
+    </div>
 </div>
 </template>
 
 
 
 <style>
-.bg-custom-green, .bg-custom-log {
+.bg-custom-green {
     background-color: #89D036;
 }
 
+
+.bg-custom-log {
+    background-color: white;
+    border: 2px solid #89D036;
+    color: black;
+     
+}
+
 .bg-custom-register {
-    background-color: #8952B0;
+    background-color: white;
+    border: 2px solid #8952B0;
+    color: black;
 }
 </style>
