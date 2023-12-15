@@ -1,14 +1,17 @@
-<script setup>
+<script setup >
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { useForm as useFormHcaptcha } from '@inertiajs/vue3';
+
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
 
 
-const form = useForm({
+
+const form = useFormHcaptcha({
     name: '',
     email: '',
     password: '',
@@ -20,27 +23,37 @@ const form = useForm({
 //         onFinish: () => form.reset('password', 'password_confirmation'),
 //     });
 // };
+// const hCaptcha = async () => {hcaptcha.execute("7d0f0ea1-2454-49cd-9c2c-63fbdd941cf1", { async: true })
+//     .then(({ response, key }) => {
+//         console.log(response, key);
+//     })
+//     .catch(err => {
+//         console.error(err);
+//     });
+// }// Define the hCaptcha instance variable
+
+let isTokenValid = false;
 
 
 const submit = async () => {
     try {
-        const token = await hcaptchaExecute(); // Execute hCaptcha and get the response token
-        form.captcha = token; // Assign the token to the form field
-
-        // Post the form data including the captcha token
-        form.post(route('register'), {
-            onFinish: () => {
-                form.reset('password', 'password_confirmation');
-                form.captcha = null; // Reset the captcha field after successful submission
-            },
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            data: {
-                ...form.data(),
-                captcha: form.captcha, // Include the captcha token in the form data
-            },
-        });
+        console.log("SUBMITTED");
+        console.log(isTokenValid);
+        const token = hcaptchaExecute()
+        if (isTokenValid) {
+            form.post(route('register'), {
+                onFinish: () => {
+                    form.reset('password', 'password_confirmation');
+                    //hcaptcha.reset(); // Reset the hCaptcha instance after successful submission
+                },
+                data: {
+                    ...form.data,
+                    captcha: token, // Include the captcha token in the form data
+                },
+            });
+        } else {
+            console.log("hCaptcha verification failed");
+        }
     } catch (error) {
         console.error('hCaptcha execution error:', error);
     }
@@ -61,13 +74,45 @@ const hcaptchaExecute = async () => {
     });
 };
 
+
+const verifyHcaptchaToken = async (token) => {
+  const secretKey = 'ES_5873872438614b92a263ed2fff7905d4'; // Replace with your hCaptcha secret key
+
+  const url = 'https://api.hcaptcha.com/siteverify';
+  const body = new URLSearchParams({
+    secret: secretKey,
+    response: token,
+  });
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `response=${token}&secret=${secretKey}`,
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.success; // Returns true if token is verified, otherwise false
+    } else {
+      throw new Error('Failed to verify hCaptcha token');
+    }
+  } catch (error) {
+    console.error('Error verifying hCaptcha token:', error);
+    return false; // Verification failed
+  }
+};
+
+
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Register" />
 
-        <form @submit.prevent="hcaptchaExecute">
+        <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" class="mt-3" />
 
