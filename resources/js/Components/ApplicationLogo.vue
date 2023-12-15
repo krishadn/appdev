@@ -1,5 +1,3 @@
 <template>
-          <img src="/storage/partas_logo.png"  >
-
-
+          <img src="/storage/bus_logo.png"  >
 </template>

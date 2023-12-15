@@ -22,7 +22,7 @@ defineProps({
 <template>
     <div class="bg-custom-green fixed top-0 z-50 w-full flex items-center justify-between px-6 py-3">
         <div class="flex items-center">
-            <img src="bus_logo.png" alt="Logo" class="h-12 w- mr-3" />
+            <img src="bus_logo.png" alt="Logo" class="h-24 mr-3" />
         <div>
             <span class="text-2xl font-semibold text-black">Buzzline Transit, Inc.</span>
         </div>
@@ -84,7 +84,7 @@ defineProps({
     </div>
 
     <!-- FOOTER -->
-    <div className="w-full bg-slate-300 flex flex-col justify-center items-center h-20 shadow-md shadow-gray-900">
+    <div class="fixed-footer w-full bg-slate-300 flex flex-col flex-shrink-0 justify-center items-center h-20 shadow-md shadow-gray-900">
     <p className="text-black sm:text-2xl font-semibold">
         Follow us on our socials!
     </p>
@@ -116,5 +116,12 @@ defineProps({
     background-color: white;
     border: 2px solid #8952B0;
     color: black;
+}
+
+.fixed-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 </style>
