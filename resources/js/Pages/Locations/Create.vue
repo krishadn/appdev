@@ -46,23 +46,24 @@ const props = defineProps({
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-3 flex justify-center mb-5">
+                        <h1 class="text-4xl font-bold">Add New Location</h1>
+            </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+   
+                <div class="overflow-hidden w-1/2 bg-brand-cream bg-opacity-30 rounded-lg border shadow-xs">
 
-                <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
-                    <div class="p-3 flex justify-center">
-                        <h1 class="text-2xl font-semibold">ADD NEW LOCATION</h1>
-                    </div>
-                    <div class="flex md:items-center m-6">
-                            <form class="w-full max-w-sm"  @submit.prevent="submit">
-                                <div class="md:w-1/3">
+                    <div class="flex justify-center m-6">
+                            <form class=""  @submit.prevent="submit">
+                                <div class="">
                                 <InputLabel for="location" class="" value="Location"/>
                                 </div>
-                                <div class="block w-full">
+                                <div class="">
                                     <TextInput  id="location"  type="text" v-model="form.location" required />
                                 </div>
 
-                                <div class=" py-3 md:w-1/3">
-                                <PrimaryButton type="submit"> Submit  </PrimaryButton>
+                                <div class="py-3 flex justify-center mt-4">
+                                    <PrimaryButton type="submit"> Submit  </PrimaryButton>
                                 </div>
                             </form>
                     </div>
