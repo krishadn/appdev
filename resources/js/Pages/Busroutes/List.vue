@@ -48,25 +48,30 @@ function destroy(id){
                   </div>
 
 
-                    <div class="p-6 text-gray-900">
-                        <div class="overflow-x-auto w-full">
+                  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3 flex justify-center ">
+                        <div class="inline-block overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                             <table class="w-full whitespace-no-wrap">
                             <thead>
                             <tr class="text-xs font-semibold TableRowacking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
-                                <th class="px-4 py-3">Origin</th>
-                                <th class="px-4 py-3">Destination</th>
-                                <th class="px-4 py-3" colspan="2">Actions</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Origin</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Destination</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50" colspan="2">Actions</th>
 
 
                             </tr>
                             </thead>
                             <tbody class="bg-white py-4" >
                                 <tr v-for="busroute in busroutes" :key="busroute.id" class="border-b transition duration-300 ease-in-out hover:bg-neutral-300 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                    <td>
-                                    {{ busroute.origin }}
+                                    <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
+                                    <div>
+                                        {{ busroute.origin }}
+                                    </div>
+
                                     </td>
-                                    <td >
-                                    {{ busroute.destination }}
+                                    <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
+                                        <div>
+                                            {{ busroute.destination }}
+                                        </div>                                 
                                     </td>
                                     <td class="flex">
                                     <Link title="Edit Bus Route" :href="route('busroutes.edit')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2  m-2 rounded mx-2" :data= "{id: busroute.id}" as="button" >
