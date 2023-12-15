@@ -4,6 +4,7 @@ import Carousel from '@/Components/Carousel.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 import BarChart from '@/Components/BarChart.vue';
+import DoughChart from '@/Components/DoughChart.vue';
 
 const props = defineProps({
     bus_types: Object,
@@ -19,7 +20,7 @@ const typeData = props.bus_types.map(obj => obj.bus_count)
 const typeDatasets = [{
         label: 'Bus by Type',
         data: typeData,
-        backgroundColor:['#8952B0','#89D036'],
+        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 255, 0)'],
         borderWidth: 1
 }]
 
@@ -62,7 +63,7 @@ function destroy(id){
 
             <!-- Bus Graph Section -->
             
-            <BarChart :labels="typeLabels" :datasets="typeDatasets"/>
+            <DoughChart :labels="typeLabels" :datasets="typeDatasets"/>
             <BarChart :labels="statusLabels" :datasets="statusDatasets"/>
             <BarChart :labels="availLabels" :datasets="availDatasets"/>
 
@@ -72,19 +73,48 @@ function destroy(id){
                 <h1 class="text-xl font-semibold">SCHEDULE TODAY</h1>
 
                 <!-- Schedule Table -->
-                <div class="p-6 text-gray-900 overflow-x-auto">
+                <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+
                     <table class="w-full whitespace-no-wrap">
                         <thead>
-                            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
-                                <th class="px-4 py-3">Departure Time</th>
-                                <th class="px-4 py-3">Arrival Time</th>
-                                <th class="px-4 py-3">Origin</th>
-                                <th class="px-4 py-3">Destination</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3">Bus Type</th>
-                                <th class="px-4 py-3">Action</th>
-                            </tr>
-                        </thead>
+              <tr>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Departure Time
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Arrival Time
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Origin
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Destination
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Status
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Bus Type
+                </th>
+                <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
+                >
+                Action
+                </th>
+              </tr>
+            </thead>
                         <tbody class="bg-white divide-y">
                             <tr v-for="schedule in schedules" :key="schedule.id" 
                             :class="{
@@ -95,12 +125,73 @@ function destroy(id){
                                 'bg-red-300': schedule.status === 'Delay',
                                 'bg-yellow-300': schedule.status === 'Waiting',
                             }">
-                                <td>{{ schedule.departure_time }}</td>
-                                <td>{{ schedule.arrival_time }}</td>
-                                <td>{{ schedule.origin }}</td>
-                                <td>{{ schedule.destination }}</td>
-                                <td>{{ schedule.status }}</td>
-                                <td>{{ schedule.type }}</td>
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.departure_time }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.arrival_time }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.origin }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+ 
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.destination }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.status }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+
+                <td
+                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                >
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{ schedule.type }}
+                  </div>
+                  <!-- <div class="text-sm leading-5 text-gray-500">
+                    {{ u.title2 }}
+                  </div> -->
+                </td>
+
+
                                 <td class="flex">
                                     <Link :href="route('schedule.edit')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2  m-2 rounded mx-2"
                                             :data= "{id: schedule.id}" as="button" >
@@ -120,7 +211,12 @@ function destroy(id){
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
+
+
+
+
             </div>
         </div>
     </AuthenticatedLayout>

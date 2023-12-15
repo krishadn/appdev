@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
        // Reservation::factory(25)->create();
        // Payment::factory(25)->create();
        //Location::factory(12)->create();
-        // User::factory(3)->create();
+        User::factory(3)->create();
     }
 }
