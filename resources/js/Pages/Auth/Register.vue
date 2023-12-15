@@ -50,7 +50,7 @@ const submit = async () => {
 const hcaptchaExecute = async () => {
     return new Promise((resolve, reject) => {
         if (typeof window !== 'undefined' && window.hcaptcha) {
-            window.hcaptcha.execute().then((token) => {
+            window.hcaptcha.execute({ async: true }).then((token) => {
                 resolve(token);
             }).catch((error) => {
                 reject(error);
@@ -129,7 +129,7 @@ const hcaptchaExecute = async () => {
                 <InputError class="mt-1" :message="form.errors.password_confirmation" />
             </div>
 
-            <div lass="flex items-center justify-end mt-3">
+            <div class="flex items-center justify-start mt-3">
                 <VueHcaptcha sitekey='7d0f0ea1-2454-49cd-9c2c-63fbdd941cf1'/> <!-- Replace with your hCaptcha site key -->
 
             </div>

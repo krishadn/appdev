@@ -20,7 +20,7 @@ const typeData = props.bus_types.map(obj => obj.bus_count)
 const typeDatasets = [{
         label: 'Bus by Type',
         data: typeData,
-        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 255, 0)'],
+        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 255, 0)','rgb(0, 105, 55)'],
         borderWidth: 1
 }]
 
