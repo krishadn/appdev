@@ -39,7 +39,7 @@ function destroy(id){
                   </div>
 
 
-                  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3 flex justify-center h-screen">
+                  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3 flex justify-center">
                         <div class="inline-block overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                             <table class="w-full whitespace-no-wrap">
                             <thead>
