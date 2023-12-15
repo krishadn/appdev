@@ -70,12 +70,14 @@ const regex = /^[A-Z]{3}[0-9]{3}$/;
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
-                    <div class="p-3 flex justify-center">
-                        <h1 class="text-2xl font-semibold">UPDATE BUS</h1>
-                    </div>
-                    <div class="overflow-x-auto  mx-8 ">
+            <div class="p-3 flex justify-center mb-5">
+                        <h1 class="text-4xl font-bold">Update Bus</h1>
+            </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+   
+                 <div class="overflow-hidden w-1/2 bg-brand-cream bg-opacity-30 rounded-lg border shadow-xs">
+
+                    <div class="overflow-x-auto mx-8 py-5">
                             <form @submit.prevent="update" >
                                 <InputLabel for="code" value="Code"/>
                                 <TextInput
@@ -84,7 +86,7 @@ const regex = /^[A-Z]{3}[0-9]{3}$/;
                                     v-model="form.code"
                                     required
                                 />
-                                <InputLabel for="type" class="block font-medium text-gray-700">Select Bus Type:</InputLabel>
+                                <InputLabel for="type" class="">Bus Type</InputLabel>
                                 <select id="type" v-model="form.type" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option value="De Luxe">De Luxe</option>
                                     <option value="Standard Bus">Standard Bus</option>
@@ -103,12 +105,12 @@ const regex = /^[A-Z]{3}[0-9]{3}$/;
                                     required
                                 />
 
-                                <InputLabel for="type" class="block font-medium text-gray-700">Select Status:</InputLabel>
+                                <InputLabel for="type" class="">Status</InputLabel>
                                 <select id="type" v-model="form.status" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option value="Good Condition">Good Condition</option>
                                     <option value="For Repair">For Repair</option>
                                  </select>
-                                <div class=" py-3 md:w-1/3">
+                                <div class="py-3 flex justify-center mt-4">
                                    <PrimaryButton>Submit</PrimaryButton>
                                 </div>
                             </form>
