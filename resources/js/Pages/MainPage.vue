@@ -48,7 +48,7 @@ defineProps({
                 
             
             <!-- Login and Register buttons -->
-            <div class="flex ml-60 mt-10">
+            <div class="flex items-center justify-center mt-4 md:mt-10">
                 <div v-if="canLogin" class="p-6 text-left">
                     <Link
                         v-if="$page.props.auth.user"
@@ -61,7 +61,7 @@ defineProps({
                 <!-- LOGIN  -->
                 <Link
                     :href="route('login')"
-                    class="bg-custom-log bg-hover text-white font-bold py-2 px-4 rounded mr-2 sm:text-2xl hover:bg-brand-green">
+                    class="bg-custom-log bg-hover text-white font-bold py-2 px-4 rounded mr-2 text-lg sm:text-xl md:text-2xl lg:text-3xl hover:bg-brand-green">
                     Log in
                 </Link>
 
@@ -69,7 +69,7 @@ defineProps({
                 <Link
                     v-if="canRegister"
                     :href="route('register')"
-                    class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2 sm:text-2xl hover:bg-brand-purple">
+                    class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2 text-lg sm:text-xl md:text-2xl lg:text-3xl hover:bg-brand-purple">
                     Register
                 </Link>
 
@@ -79,11 +79,18 @@ defineProps({
 </div>
 
             <!-- Right div for the company picture -->
-            <div class="w-1/2 mt-40">
+            <div class="flex justify-center md:w-1/2 mt-4 md:mt-40">
                 <img src="bus_pic.png" alt="Company Picture">
             </div>
             </div>
         </div>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="flex justify-center">
+        <Carousel>
+
+        </Carousel>
     </div>
 
     <!-- FOOTER -->
@@ -120,7 +127,4 @@ defineProps({
     border: 2px solid #8952B0;
     color: black;
 }
-
-
-
 </style>
