@@ -36,55 +36,58 @@ defineProps({
     </div>
 
     <!-- TAGLINE -->
-    <div>
-        <div class="flex">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex-grow">
+            <div class="flex">
             <!-- Left div for the tagline -->
             <div class="w-3/4 mt-60 ml-20">
                 <h2 class="text-4xl font-bold tracking-tight text-black sm:text-6xl">To Infinity and Beyond your Expectations!</h2>
                 <p class="mt-6 text-lg leading-8 text-black-300 sm:text-2xl">Hop on board and let us take you where you need to go! 
                     <br>Because at Buzzline Transit, we go beyond your expectations.
                 </p>
-            </div>
+                
+            
+            <!-- Login and Register buttons -->
+            <div class="flex ml-60 mt-10">
+                <div v-if="canLogin" class="p-6 text-left">
+                    <Link
+                        v-if="$page.props.auth.user"
+                        :href="route('dashboard')"
+                        class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                        Dashboard
+                    </Link>
+
+            <template v-else>
+                <!-- LOGIN  -->
+                <Link
+                    :href="route('login')"
+                    class="bg-custom-log bg-hover text-white font-bold py-2 px-4 rounded mr-2 sm:text-2xl hover:bg-brand-green">
+                    Log in
+                </Link>
+
+                <!-- REGISTER -->
+                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2 sm:text-2xl hover:bg-brand-purple">
+                    Register
+                </Link>
+
+            </template>
+        </div>
+    </div>
+</div>
 
             <!-- Right div for the company picture -->
             <div class="w-1/2 mt-40">
                 <img src="bus_pic.png" alt="Company Picture">
             </div>
-        </div>
-
-        <!-- Login and Register buttons -->
-        <div class="flex justify-center mb-20">
-            <div v-if="canLogin" class="p-6 text-left">
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="route('dashboard')"
-                    class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Dashboard
-                </Link>
-
-        <template v-else>
-            <!-- LOGIN  -->
-            <Link
-                :href="route('login')"
-                class="bg-custom-log bg-hover text-white font-bold py-2 px-4 rounded mr-2 sm:text-2xl hover:bg-brand-green">
-                Log in
-            </Link>
-
-            <!-- REGISTER -->
-            <Link
-                v-if="canRegister"
-                :href="route('register')"
-                class="bg-custom-register text-white font-bold py-2 px-4 rounded ml-2 sm:text-2xl hover:bg-brand-purple">
-                Register
-            </Link>
-
-        </template>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <div class="fixed-footer w-full bg-slate-300 flex flex-col flex-shrink-0 justify-center items-center h-20 shadow-md shadow-gray-900">
+    <div class="w-full bg-white flex flex-col flex-shrink-0 justify-center items-center h-20 shadow-md shadow-gray-900">
     <p className="text-black sm:text-2xl font-semibold">
         Follow us on our socials!
     </p>
@@ -118,10 +121,6 @@ defineProps({
     color: black;
 }
 
-.fixed-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-}
+
+
 </style>
