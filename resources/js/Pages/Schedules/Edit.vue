@@ -64,11 +64,14 @@ const props = defineProps({
         
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
-                    <div class="p-3 flex justify-center">
-                        <h1 class="text-2xl font-semibold">UPDATE SCHEDULE</h1>
-                    </div>
+            <div class="p-3 flex justify-center mb-5">
+                        <h1 class="text-4xl font-bold">Update Schedule</h1>
+            </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+   
+                <div class="overflow-hidden w-1/2 bg-brand-cream bg-opacity-30 rounded-lg border shadow-xs">
+
+       
                     <div class="overflow-x-auto  mx-8 ">
                             <form @submit.prevent="update" >
                                 <div class="md:w-1/3">
@@ -91,17 +94,17 @@ const props = defineProps({
                                     <TextInput  id="price"  type="number" v-model="form.price" min = 1 required />
                                 </div>
 
-                                <InputLabel for="route" class="block font-medium text-gray-700">Select Bus Route:</InputLabel>
+                                <InputLabel for="route" class="">Bus Route</InputLabel>
                                 <select id="route" v-model="form.route_id" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option v-for="route in routes"  :value="route.id">{{ route.origin }} - {{ route.destination }}</option>
                                  </select>
 
-                                 <InputLabel for="bus" class="block font-medium text-gray-700">Select Bus </InputLabel>
+                                 <InputLabel for="bus" class="">Bus </InputLabel>
                                 <select id="route" v-model="form.bus_id" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option v-for="bus in buses"  :value="bus.id">{{ bus.code }} - {{ bus.type }}</option>
                                  </select>
 
-                                 <InputLabel for="type" class="block font-medium text-gray-700">Select Status:</InputLabel>
+                                 <InputLabel for="type" class="">Status</InputLabel>
                                 <select id="type" v-model="form.status" class="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none focus:border-indigo-500">
                                     <option value="In Transit">In Transit</option>
                                     <option value="Arrived">Arrived</option>
@@ -109,8 +112,8 @@ const props = defineProps({
                                     <option value="Waiting">Waiting</option>
                                  </select>
 
-                                <div class=" py-3 md:w-1/3">
-                                <PrimaryButton type="submit"> Submit  </PrimaryButton>
+                                 <div class="py-3 flex justify-center mt-4 mb-4">
+                                <PrimaryButton type="submit"> Update Schedule  </PrimaryButton>
                                 </div>
 
                             </form>
