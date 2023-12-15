@@ -1,4 +1,4 @@
-<script setup>
+<script setup >
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -8,6 +8,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { useForm as useFormHcaptcha } from '@inertiajs/vue3';
 
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
+
 
 
 const form = useFormHcaptcha({
@@ -29,15 +30,16 @@ const form = useFormHcaptcha({
 //     .catch(err => {
 //         console.error(err);
 //     });
-// }
+// }// Define the hCaptcha instance variable
+
 let isTokenValid = false;
 
 
 const submit = async () => {
     try {
         console.log("SUBMITTED");
-        const token = await hcaptcha.execute();
-        console.log(token);
+        console.log(isTokenValid);
+        const token = hcaptchaExecute()
         if (isTokenValid) {
             form.post(route('register'), {
                 onFinish: () => {
@@ -59,14 +61,9 @@ const submit = async () => {
 
 // Function to execute hCaptcha
 const hcaptchaExecute = async () => {
-    return new Promise((resolve, reject) => {
-        if (hcaptchaInstance) {
-            hcaptchaInstance.execute();
-            hcaptchaInstance.onVerified((token) => resolve(token));
-        } else {
-            reject('hCaptcha is not loaded');
-        }
-    });
+    const token = await hcaptcha.execute();
+    isTokenValid = true;
+
 };
 
 
