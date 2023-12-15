@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 defineProps({
     canResetPassword: {
@@ -31,17 +32,21 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head title="Login" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="status">
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <h2 class="flex items-center flex-col text-6xl font-semibold text-black mt-10">
+                    Buzzline Transit, Inc.
+                </h2>
 
-                <TextInput
+                <InputLabel for="email" value="Email" class="mt-20" />
+
+                <TextInput 
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
@@ -55,7 +60,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Password" class="mt-10" />
 
                 <TextInput
                     id="password"
@@ -94,3 +99,5 @@ const submit = () => {
     </GuestLayout>
 
 </template>
+
+

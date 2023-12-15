@@ -5,6 +5,7 @@
   </div>
 </template>
 
+
 <script setup>
     import { ref, onMounted } from 'vue';
     import Chart from 'chart.js/auto';
@@ -34,7 +35,7 @@
         const ctx = canvas.value.getContext('2d');
 
         const myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
             labels: props.labels,
             datasets: props.datasets
@@ -43,27 +44,21 @@
                 plugins: {
                     customCanvasBackgroundColor: {
                         color: '#FEEDDF',
-                    },
-                    legend: {
-                      display: false,
-                    },
-                },
-                scales: {
-                    y: {
-                      beginAtZero: true
                     }
-                }
-            },
-            animations: {
+                },
+    animations: {
       tension: {
         duration: 1000,
-        easing: 'bar',
+        easing: 'doughnut',
         from: 1,
         to: 0,
-        loop: true
-      },
-      
+        loop: true,
+        active: 100 ,
+        resize: 10
+      }
     },
+                
+            },
             plugins: [plugin],
         });
 

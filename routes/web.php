@@ -30,6 +30,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/about', function () {
+    return Inertia::render('AboutPage');
+});
+
+Route::get('/contact', function () {
+    return Inertia::render('ContactPage');
+});
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

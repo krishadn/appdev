@@ -54,12 +54,14 @@ const props = defineProps({
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden ma-8 w-100  bg-red-200 rounded-lg border shadow-xs">
-                    <div class="p-3 flex justify-center">
-                        <h1 class="text-2xl font-semibold">UPDATE LOCATION</h1>
-                    </div>
-                    <div class="overflow-x-auto  mx-8 ">
+            <div class="p-3 flex justify-center mb-5">
+                        <h1 class="text-4xl font-bold">Update Location</h1>
+            </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+   
+                <div class="overflow-hidden w-1/2 bg-brand-cream bg-opacity-30 rounded-lg border shadow-xs">
+
+                    <div class="flex justify-center m-6">
                             <form @submit.prevent="update" >
                                 <InputLabel for="location" value="location"/>
                                 <TextInput
@@ -68,7 +70,7 @@ const props = defineProps({
                                     v-model="form.location"
                                     required
                                 />
-                                <div class=" py-3 md:w-1/3">
+                                <div class="py-3 flex justify-center mt-4">
                                    <PrimaryButton>Submit</PrimaryButton>
                                 </div>
                             </form>

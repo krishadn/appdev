@@ -105,7 +105,7 @@ const verifyHcaptchaToken = async (token) => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Name" class="mt-3" />
 
                 <TextInput
                     id="name"
@@ -117,7 +117,7 @@ const verifyHcaptchaToken = async (token) => {
                     autocomplete="name"
                 />
 
-                <InputError class="mt-1" :message="form.errors.name" />
+                <InputError class="mt-3" :message="form.errors.name" />
             </div>
 
             <div class="mt-3">
@@ -170,14 +170,13 @@ const verifyHcaptchaToken = async (token) => {
 
             </div>
 
-            <div class="flex items-center justify-end mt-3">
+            <div class="flex items-center justify-end mt-2">
                 <Link
                     :href="route('login')"
-                    class="underline text-sm text-gray-599 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                    class="underline text-sm text-gray-599 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-green">
                     Already registered?
                 </Link>
-                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ml-3 sm:text-s" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
             </div>
