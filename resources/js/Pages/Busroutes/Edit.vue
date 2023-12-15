@@ -52,11 +52,13 @@ const props = defineProps({
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden ma-8  bg-red-200 rounded-lg border shadow-xs">
-                    <div class="p-3 flex justify-center">
-                        <h1 class="text-2xl font-semibold">UPDATE ROUTE</h1>
-                    </div>
+            <div class="p-3 flex justify-center mb-5">
+                        <h1 class="text-4xl font-bold">Update Route</h1>
+            </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+   
+                <div class="overflow-hidden w-1/2 bg-brand-cream bg-opacity-30 rounded-lg border shadow-xs">
+
                     <div class="overflow-x-auto  m-8 ">
                             <form @submit.prevent="update" >
                                 <div class="mb-4">
@@ -79,7 +81,10 @@ const props = defineProps({
                                         </template>
                                    </select>
                                 </div>
-                                <PrimaryButton>Submit</PrimaryButton>
+                                <div class="py-3 flex justify-center mt-4">
+                                    <PrimaryButton>Update Route</PrimaryButton>
+                                </div>
+                                
                             </form>
                     </div>
                 </div>

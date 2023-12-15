@@ -46,11 +46,6 @@
                         color: '#FEEDDF',
                     }
                 },
-                scales: {
-                    y: {
-                    beginAtZero: true
-                    }
-                },
     animations: {
       tension: {
         duration: 1000,
