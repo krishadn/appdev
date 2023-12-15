@@ -39,21 +39,28 @@ const submit = async () => {
     try {
         console.log("SUBMITTED");
         console.log(isTokenValid);
-        const token = hcaptchaExecute()
-        if (isTokenValid) {
+        const token = hcaptchaExecute().then(()=>{
             form.post(route('register'), {
-                onFinish: () => {
-                    form.reset('password', 'password_confirmation');
-                    //hcaptcha.reset(); // Reset the hCaptcha instance after successful submission
-                },
-                data: {
-                    ...form.data,
-                    captcha: token, // Include the captcha token in the form data
-                },
+                onFinish: () => form.reset('password', 'password_confirmation'),
             });
-        } else {
-            console.log("hCaptcha verification failed");
-        }
+        })
+        // if (isTokenValid) {
+        //     form.post(route('register'), {
+        //         onFinish: () => {
+        //             form.reset('password', 'password_confirmation');
+        //             //hcaptcha.reset(); // Reset the hCaptcha instance after successful submission
+        //         },
+        //         data: {
+        //             ...form.data,
+        //             captcha: token, // Include the captcha token in the form data
+        //         },
+        //     });
+        // } else {
+        //     form.post(route('register'), {
+        //         onFinish: () => form.reset('password', 'password_confirmation'),
+        //     });
+        //     console.log("hCaptcha verification failed");
+        // }
     } catch (error) {
         console.error('hCaptcha execution error:', error);
     }
