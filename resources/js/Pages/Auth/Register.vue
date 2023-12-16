@@ -30,8 +30,7 @@ const form = useFormHcaptcha({
 //     .catch(err => {
 //         console.error(err);
 //     });
-// }// Define the hCaptcha instance variable
-
+// }
 let isTokenValid = false;
 
 
@@ -39,7 +38,8 @@ const submit = async () => {
     try {
         console.log("SUBMITTED");
         console.log(isTokenValid);
-        const token = hcaptchaExecute().then(()=>{
+        const token = hcaptchaExecute();
+        if (isTokenValid) {
             form.post(route('register'), {
                 onFinish: () => form.reset('password', 'password_confirmation'),
             });
@@ -68,17 +68,9 @@ const submit = async () => {
 
 // Function to execute hCaptcha
 const hcaptchaExecute = async () => {
-    return new Promise((resolve, reject) => {
-        if (typeof window !== 'undefined' && window.hcaptcha) {
-            window.hcaptcha.execute({ async: true }).then((token) => {
-                resolve(token);
-            }).catch((error) => {
-                reject(error);
-            });
-        } else {
-            reject('hCaptcha is not loaded');
-        }
-    });
+    await hcaptcha.execute()
+    isTokenValid = true;
+      
 };
 
 
@@ -181,9 +173,8 @@ const verifyHcaptchaToken = async (token) => {
                 <InputError class="mt-1" :message="form.errors.password_confirmation" />
             </div>
 
-
-            <div class="flex items-center justify-start mt-5">
-                <VueHcaptcha sitekey='7d0f0ea1-2454-49cd-9c2c-63fbdd941cf1'/> <!-- Replace with your hCaptcha site key -->
+            <div lass="flex items-center justify-end mt-3">
+                <VueHcaptcha sitekey='7d0f0ea1-2454-49cd-9c2c-63fbdd941cf1'  ref="hcaptcha"/> <!-- Replace with your hCaptcha site key -->
 
             </div>
 

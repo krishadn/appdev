@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(fab)
 
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

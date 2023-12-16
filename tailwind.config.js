@@ -20,7 +20,9 @@ export default {
         },
         colors: {
             'brand-green':'#89D036',
+            'brand-green-darker':"#598024",
             'brand-purple':'#8952B0',
+            'brand-purple-darker':'#5C3881',
             'brand-cream':'#FEEDDF',
         }
     },

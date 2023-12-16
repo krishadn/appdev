@@ -29,7 +29,7 @@ function destroy(id){
                 </div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                   <div class="p-3 ">
-                    <Link :href="route('schedule.create')" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2 rounded mx-2  transition duration-300 ease-in-out transform hover:scale-105"
+                    <Link :href="route('schedule.create')" class="flex items-center text-white font-semibold px-3 py-2 rounded mx-2  transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-md bg-brand-purple hover:bg-brand-purple-darker"
                             as="button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -39,18 +39,18 @@ function destroy(id){
                   </div>
 
 
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
+                    <div class="bg-white overflow-x-auto shadow-sm sm:rounded-lg p-3">
                         <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                             <table class="w-full whitespace-no-wrap">
                             <thead>
                             <tr class="text-xs font-semibold TableRowacking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Departure Time</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Arrival Time</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Origin</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Destination</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Status</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Bus Type</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">Action</th>
+                                <th class="px-6 py-3 text-xs  font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Departure Time</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Arrival Time</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-leftuppercase border-b border-gray-200 bg-gray-50">Origin</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Destination</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Status</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Bus Type</th>
+                                <th class="px-6 py-3 text-xs font-bold text-gray-800 leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-gray-50">Action</th>
 
                             </tr>
                             </thead>
@@ -65,44 +65,44 @@ function destroy(id){
                                         'bg-yellow-300': schedule.status === 'Waiting',
                                         }">   
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.departure_time }}
                                         </div>
                                     
                                     </td>
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.arrival_time }}
                                         </div>
                                     
                                     </td>
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.origin }}
                                         </div>
                                     
                                     </td>
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.destination }}
                                         </div>
                                     
                                     </td>
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.status }}
                                         </div>
                                     
                                     </td>
                                     <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap" >
-                                        <div class="text-sm leading-5 text-gray-900" >
+                                        <div class="text-sm leading-5 text-gray-500" >
                                             {{ schedule.type }}
                                         </div>
                                     
                                     </td>
                                     <td class="flex">
                                         <Link :href="route('schedule.edit')"
-                                            class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-semibold px-3 py-2  m-2 rounded mx-2"
+                                            class="flex items-center text-white font-semibold px-3 py-2  m-2 rounded mx-2 duration-300 ease-in-out transform hover:scale-105 hover:shadow-md bg-brand-green hover:bg-brand-green-darker"
                                             :data= "{id: schedule.id}" as="button" >
                                             EDIT <!-- Edit info on button -->
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
@@ -110,7 +110,7 @@ function destroy(id){
                                            </svg>
                                         </Link>
 
-                                            <PrimaryButton title="Delete Schedule" class="flex items-center bg-red-500 hover:bg-red-700 text-white font-semibold px-3 py-2 m-2 rounded mx-2"
+                                            <PrimaryButton title="Delete Schedule" class="flex items-center text-white font-semibold px-3 py-2 m-2 rounded mx-2 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-md"
                                                 @Click="destroy(schedule.id)"
                                             > DELETE <!-- Delete info on button -->
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">

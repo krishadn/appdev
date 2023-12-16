@@ -20,7 +20,7 @@ const typeData = props.bus_types.map(obj => obj.bus_count)
 const typeDatasets = [{
         label: 'Bus by Type',
         data: typeData,
-        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 255, 0)','rgb(0, 105, 55)'],
+        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 205, 86)'],
         borderWidth: 1
 }]
 
@@ -59,25 +59,39 @@ function destroy(id){
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
-        <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- Bus Graph Section -->
-            
-            <DoughChart :labels="typeLabels" :datasets="typeDatasets"/>
-            <BarChart :labels="statusLabels" :datasets="statusDatasets"/>
-            <BarChart :labels="availLabels" :datasets="availDatasets"/>
+
+<div class="flex justify-center">
+  <div class="p-6 my-4 x-">
+    <div class="grid grid-cols-3 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <DoughChart :labels="typeLabels" :datasets="typeDatasets" />
+        <BarChart :labels="availLabels" :datasets="availDatasets" />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-">
+        <BarChart :labels="statusLabels" :datasets="statusDatasets" />
+        
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+           
 
 
             <!-- Schedule Today Section -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-3">
+            <div class="bg-white overflow-hidden  shadow-sm sm:rounded-lg p-3">
                 <h1 class="text-xl font-semibold">SCHEDULE TODAY</h1>
 
                 <!-- Schedule Table -->
-                <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                <div class="inline-block w-full overflow-x-auto align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     <table class="w-full whitespace-no-wrap">
                         <thead>
-              <tr>
+              <tr class="text-xs font-semibold TableRowacking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
                 >
@@ -126,7 +140,7 @@ function destroy(id){
                                 'bg-yellow-300': schedule.status === 'Waiting',
                             }">
                 <td
-                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
+                  class="px-6  py-4 border-b border-gray-200 whitespace-nowrap"
                 >
                   <div class="text-sm leading-5 text-gray-900">
                     {{ schedule.departure_time }}
@@ -218,6 +232,5 @@ function destroy(id){
 
 
             </div>
-        </div>
     </AuthenticatedLayout>
 </template>
