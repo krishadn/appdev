@@ -42,6 +42,10 @@ const createChart = () => {
           customCanvasBackgroundColor: {
             color: '#FEEDDF',
           },
+          legend: {
+            display: false
+          },
+
         },
         scales: {
           y: {

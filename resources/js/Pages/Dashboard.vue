@@ -20,7 +20,7 @@ const typeData = props.bus_types.map(obj => obj.bus_count)
 const typeDatasets = [{
         label: 'Bus by Type',
         data: typeData,
-        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(255, 205, 86)'],
+        backgroundColor:['rgb(255, 99, 132)','rgb(54, 162, 235)','rgb(255, 205, 86)','rgb(178, 198, 0)','rgb(0, 197, 177)'],
         borderWidth: 1
 }]
 
@@ -62,14 +62,18 @@ function destroy(id){
 
 
 <div class="flex justify-center">
-  <div class="p-6 my-4 x-">
-    <div class="grid grid-cols-3 md:grid-cols-2 gap-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="p-6 my-4">
+    <div class="w-fit grid grid-cols-3 md:grid-cols-3 gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
         <DoughChart :labels="typeLabels" :datasets="typeDatasets" />
-        <BarChart :labels="availLabels" :datasets="availDatasets" />
+        
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-1 gap-">
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
         <BarChart :labels="statusLabels" :datasets="statusDatasets" />
+        
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
+        <BarChart :labels="availLabels" :datasets="availDatasets" />
         
       </div>
 

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         //Busroute::factory(10)->create();
         //Bus::factory(10)->create();
-        BusSchedule::factory(2)->create();
+        BusSchedule::factory(3)->create();
        // Passenger::factory(15)->create();
        // Reservation::factory(25)->create();
        // Payment::factory(25)->create();

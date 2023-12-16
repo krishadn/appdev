@@ -43,24 +43,7 @@ const submit = async () => {
             form.post(route('register'), {
                 onFinish: () => form.reset('password', 'password_confirmation'),
             });
-        })
-        // if (isTokenValid) {
-        //     form.post(route('register'), {
-        //         onFinish: () => {
-        //             form.reset('password', 'password_confirmation');
-        //             //hcaptcha.reset(); // Reset the hCaptcha instance after successful submission
-        //         },
-        //         data: {
-        //             ...form.data,
-        //             captcha: token, // Include the captcha token in the form data
-        //         },
-        //     });
-        // } else {
-        //     form.post(route('register'), {
-        //         onFinish: () => form.reset('password', 'password_confirmation'),
-        //     });
-        //     console.log("hCaptcha verification failed");
-        // }
+        }
     } catch (error) {
         console.error('hCaptcha execution error:', error);
     }
